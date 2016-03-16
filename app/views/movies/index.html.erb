@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+
+<div class="panel panel-success">
+    <div class="panel-heading">MOVIES</div>
+    <!-- Table -->
+    <table class="table table-striped grey">
+        <tr>
+            <th>Movies</th>
+            <th>Distributor</th>
+            <th>Spectators This Week</th>
+        </tr>
+        <% @movies.each do |movie| %>
+        <tr>
+            <td><%= link_to movie.title, movie, :class => "btn btn-default glyphicon glyphicon-film" %></td>
+            <td><%= movie.distributor %></td>
+            <td><%= movie.spectators_per_week %></td>
+        </tr>
+        <% end %>
+    </div>
+</table>
+<div class="panel-footer">IMPORT FILES</div>
+<!-- <h3>Import Movies</h3> -->
+
+        <%= form_tag import_movies_path, multipart: true do %>
+
+        <%= file_field_tag :file %>
+        <%= submit_tag "Import" %>
+        <% end %>
+</div>
+
+</html>
