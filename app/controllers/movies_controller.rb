@@ -31,16 +31,15 @@ class MoviesController < ApplicationController
 
     def film_params
         params.require(:movie).permit(
+        :id,
         :title,
         :distributor,
         :release_date,
         :weeks,
-        :movie_id,
         :number_of_copies,
         :spectators_per_week,
         :total_spectators,
-        :satifaction_rate,
-        :city
+        :satisfaction_rate
         )
     end
 end

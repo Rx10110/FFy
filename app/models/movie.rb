@@ -1,6 +1,6 @@
 class Movie < ActiveRecord::Base
-    has_many :city_movies
-    has_many :cities, :through => :city_movies
+    has_many :cities_movies
+    has_many :cities, :through => :cities_movies
 
     # choosing which row is going in which column in the database and translating the columns names to english
     MAPPING = {
@@ -10,9 +10,9 @@ class Movie < ActiveRecord::Base
         "nb copies" => "number_of_copies",
         "entrées" => "spectators_per_week",
         "cumulFrance" => "total_spectators",
-        "Taux de hte sat." => "satifaction_rate"
-        # didnt had the columns realease_date and city cause they're not in the file uploading file
-        #just had them here when you have them
+        "Taux de hte sat." => "satisfaction_rate"
+        # didnt had the column realease_date it's not in the file uploading file
+        #just had it here when you'll have it and dont forget to had it under as well.
     }
 
     def self.import(file)
@@ -23,8 +23,7 @@ class Movie < ActiveRecord::Base
             row = Hash[[header, spreadsheet.row(i)].transpose]
             # Convert the keys from the csv/xls to match the database column names
             row.keys.each { |k| row[ MAPPING[k] ] = row.delete(k) if MAPPING[k] }
-            # Removing the fields that are not in the database:
-            # create(row.except!('rang', 'moyenne/copie', 'évo?ution', 'totalsemprécédente', 'moyenne/copie', 'cumulprév,', 'coef,prof'))
+
             # check if the title already exists in the database to override its previous values
             m = Movie.find_or_initialize_by(title: row[ 'title' ])
             m.distributor = row[ 'distributor' ]
@@ -32,8 +31,11 @@ class Movie < ActiveRecord::Base
             m.number_of_copies = row[ 'number_of_copies' ]
             m.spectators_per_week = row[ 'spectators_per_week' ]
             m.total_spectators = row[ 'total_spectators' ]
-            m.satifaction_rate = row[ 'satifaction_rate' ].to_i
+            m.satisfaction_rate = row[ 'satisfaction_rate' ].to_f
             m.save
+
+            #add the city "France" to the movie created
+            CitiesMovie.create(city_id: 1, movie_id: m.id)
         end
     end
 

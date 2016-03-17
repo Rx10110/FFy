@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316180231) do
+ActiveRecord::Schema.define(version: 20160316190045) do
 
   create_table "cities", force: :cascade do |t|
     t.string "city", limit: 255
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20160316180231) do
     t.integer "number_of_copies",    limit: 4
     t.integer "spectators_per_week", limit: 4
     t.integer "total_spectators",    limit: 4
-    t.integer "satisfaction_rate",   limit: 4
+    t.float   "satisfaction_rate",   limit: 24
   end
 
   add_index "movies", ["title"], name: "index_movies_on_title", using: :btree

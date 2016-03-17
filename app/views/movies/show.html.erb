@@ -35,12 +35,14 @@
 
 <p>
   <strong>Satisfaction Rate:</strong>
-    <%= @movie.satifaction_rate%>
+    <%= (@movie.satisfaction_rate * 100).round %>%
 </p>
 
 <p>
   <strong>Cities:</strong>
-    <%= @movie.cities.each %>
+    <% @movie.cities.each do |city|%>
+    <li> <%= city.city %> </li>
+    <% end %>
 </p>
 
 <%= link_to 'Back', movies_path %>

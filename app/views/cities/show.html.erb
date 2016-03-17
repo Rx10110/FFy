@@ -5,7 +5,9 @@
 
 <p>
     <strong>Movies:</strong>
-    <%= @movie.title %>
+    <% @city.movies.each do |movie|%>
+    <li> <%= movie.title %> </li>
+    <% end %>
 </p>
 
 <%= link_to 'Back', cities_path %>
