@@ -5,9 +5,16 @@
 
 <p>
     <strong>Movies:</strong>
+</p>
+
+<table class="table">
+    <tr class="success">
+<td>
     <% @city.movies.each do |movie|%>
     <li> <%= movie.title %> </li>
     <% end %>
-</p>
+</td>
+</tr>
+</table>
 
 <%= link_to 'Back', cities_path %>

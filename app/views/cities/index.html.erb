@@ -4,10 +4,12 @@
 
     <table class="table table-striped grey">
         <% @cities.each do |city| %>
-        <tr>
+        <td>
             <%= link_to city.city, city %>
-        </tr>
+        </td>
         <% end %>
+    </table>
     </div>
-    
 </div>
+
+<%= link_to 'Back to Movies', movies_path %>
