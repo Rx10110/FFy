@@ -1,28 +1,21 @@
-== README
+FFY
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Description
 
-Things you may want to cover:
+This script inject a CSV or XML file to a database.
 
-* Ruby version
+Configuration
 
-* System dependencies
+* Ruby version 2.1
 
-* Configuration
+* SQL Database
 
-* Database creation
+* Database initialization can be made by using the seed dump or the EcranTotal.sql file given in the directory.
 
-* Database initialization
+Usage
 
-* How to run the test suite
+* After the app is deployed add the CSV or XML file of your choice in the movie index page. This will sort and add the movie to the database.
 
-* Services (job queues, cache servers, search engines, etc.)
+* The script will update the values of existing movies in the database as you add them.
 
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Check /models/movie.rb if you want to change the script or add features.
